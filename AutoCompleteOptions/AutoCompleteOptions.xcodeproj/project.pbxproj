@@ -463,6 +463,7 @@
 				371C658A18E2768E00D88ED4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		371C658B18E2768E00D88ED4 /* Build configuration list for PBXNativeTarget "AutoCompleteOptionsTests" */ = {
 			isa = XCConfigurationList;
@@ -471,6 +472,7 @@
 				371C658D18E2768E00D88ED4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
