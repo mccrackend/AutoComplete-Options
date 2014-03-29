@@ -42,6 +42,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
+    _acTableView.hidden = YES;
 }
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -58,6 +59,18 @@
     cell.textLabel.text = [_arrAutoComplete objectAtIndex:indexPath.row];
     
     return cell;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSLog(@"shouldChangeCharactersInRange");
+    
+    _acTableView.hidden = NO;
+    
+    NSString *substring = [NSString stringWithString:textField.text];
+    substring = [substring
+                 stringByReplacingCharactersInRange:range withString:string];
+    //[self searchAutocompleteEntriesWithSubstring:substring];
+    return NO;
 }
 
 
