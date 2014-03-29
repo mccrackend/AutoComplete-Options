@@ -14,7 +14,7 @@
 
 @implementation ACOFirstViewController
 
-@synthesize arrAutoComplete = _arrAutoComplete;
+@synthesize arrSource = _arrSource, arrAutoComplete = _arrAutoComplete;
 @synthesize acTableView = _acTableView;
 
 - (void)viewDidLoad
@@ -22,7 +22,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    _arrAutoComplete = [NSArray arrayWithObjects:@"Dan", @"Brenda", @"Kara", @"Ryan", nil];
+    _arrSource = [NSArray arrayWithObjects:@"Dan", @"Brenda", @"Kara", @"Ryan", @"Daniel", @"David", @"Rynokie", @"Blender", nil];
+    _arrAutoComplete = [NSMutableArray arrayWithObjects:nil];
     
     _acTableView = [[UITableView alloc] initWithFrame:
                              CGRectMake(25, 180, 320, 120) style:UITableViewStylePlain];
@@ -62,18 +63,30 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    NSLog(@"shouldChangeCharactersInRange");
+    NSLog(@"shouldChangeCharactersInRange, %@", string);
     
     _acTableView.hidden = NO;
     
     NSString *substring = [NSString stringWithString:textField.text];
     substring = [substring
                  stringByReplacingCharactersInRange:range withString:string];
-    //[self searchAutocompleteEntriesWithSubstring:substring];
-    return NO;
+    [self searchAutocompleteEntriesWithSubstring:substring];
+    return YES;
 }
 
-
+- (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
+    
+    // Put anything that starts with this substring into the autocompleteUrls array
+    // The items in this array is what will show up in the table view
+    [_arrAutoComplete removeAllObjects];
+    for(NSString *curString in _arrSource) {
+        NSRange substringRange = [curString rangeOfString:substring];
+        if (substringRange.location == 0) {
+            [_arrAutoComplete addObject:curString];
+        }
+    }
+    [_acTableView reloadData];
+}
 
 
 

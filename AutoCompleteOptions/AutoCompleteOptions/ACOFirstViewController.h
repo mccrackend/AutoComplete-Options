@@ -10,12 +10,14 @@
 
 @interface ACOFirstViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
 
-    NSArray *arrAutoComplete;
+    NSArray *arrSource;
+    NSMutableArray *arrAutoComplete;
     UITableView *acTableView;
     
 }
 
-@property (nonatomic, retain) NSArray *arrAutoComplete;
+@property (nonatomic, retain) NSArray *arrSource;
+@property (nonatomic, retain) NSMutableArray *arrAutoComplete;
 @property (nonatomic, retain) UITableView *acTableView;
 
 @end
