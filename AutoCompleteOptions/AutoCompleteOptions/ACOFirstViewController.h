@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ACOFirstViewController : UIViewController
+@interface ACOFirstViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+
+    NSArray *arrSource;
+    NSMutableArray *arrAutoComplete;
+    UITableView *acTableView;
+    
+}
+
+@property (nonatomic, retain) NSArray *arrSource;
+@property (nonatomic, retain) NSMutableArray *arrAutoComplete;
+@property (nonatomic, retain) UITableView *acTableView;
 
 @end
