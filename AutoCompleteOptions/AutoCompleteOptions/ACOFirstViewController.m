@@ -78,12 +78,11 @@
     // Put anything that starts with this substring into the autocompleteUrls array
     // The items in this array is what will show up in the table view
     
-    //TODO :- ignore case sensitivity
     //TODO :- handle the tableView select and replace string in textView
     
     [_arrAutoComplete removeAllObjects];
     for(NSString *curString in _arrSource) {
-        NSRange substringRange = [curString rangeOfString:substring];
+        NSRange substringRange = [[curString uppercaseString] rangeOfString:[substring uppercaseString]];
         if (substringRange.location == 0) {
             [_arrAutoComplete addObject:curString];
         }
