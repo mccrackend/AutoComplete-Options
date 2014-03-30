@@ -13,11 +13,13 @@
     NSArray *arrSource;
     NSMutableArray *arrAutoComplete;
     UITableView *acTableView;
+    UITextField *txtField;
     
 }
 
 @property (nonatomic, retain) NSArray *arrSource;
 @property (nonatomic, retain) NSMutableArray *arrAutoComplete;
 @property (nonatomic, retain) UITableView *acTableView;
+@property (nonatomic, retain) IBOutlet UITextField *txtField;
 
 @end

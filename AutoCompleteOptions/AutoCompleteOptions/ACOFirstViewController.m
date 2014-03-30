@@ -16,6 +16,7 @@
 
 @synthesize arrSource = _arrSource, arrAutoComplete = _arrAutoComplete;
 @synthesize acTableView = _acTableView;
+@synthesize txtField = _txtField;
 
 - (void)viewDidLoad
 {
@@ -26,7 +27,7 @@
     _arrAutoComplete = [NSMutableArray arrayWithObjects:nil];
     
     _acTableView = [[UITableView alloc] initWithFrame:
-                             CGRectMake(25, 180, 320, 120) style:UITableViewStylePlain];
+                             CGRectMake(25, 100, 320, 120) style:UITableViewStylePlain];
     _acTableView.delegate = self;
     _acTableView.dataSource = self;
     _acTableView.scrollEnabled = YES;
@@ -62,9 +63,13 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"selected: %@", [[_arrAutoComplete objectAtIndex:indexPath.row] description]);
+    _txtField.text = [_arrAutoComplete objectAtIndex:indexPath.row];
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    NSLog(@"shouldChangeCharactersInRange, %@", string);
-    
+    //NSLog(@"shouldChangeCharactersInRange, %@", string);
     _acTableView.hidden = NO;
     
     NSString *substring = [NSString stringWithString:textField.text];
@@ -78,9 +83,12 @@
     
     // Put anything that starts with this substring into the autocompleteUrls array
     // The items in this array is what will show up in the table view
+    
+    //TODO :- handle the tableView select and replace string in textView
+    
     [_arrAutoComplete removeAllObjects];
     for(NSString *curString in _arrSource) {
-        NSRange substringRange = [curString rangeOfString:substring];
+        NSRange substringRange = [[curString uppercaseString] rangeOfString:[substring uppercaseString]];
         if (substringRange.location == 0) {
             [_arrAutoComplete addObject:curString];
         }
