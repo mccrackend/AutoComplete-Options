@@ -62,6 +62,10 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"selected: %@", [[_arrAutoComplete objectAtIndex:indexPath.row] description]);
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     //NSLog(@"shouldChangeCharactersInRange, %@", string);
     _acTableView.hidden = NO;
