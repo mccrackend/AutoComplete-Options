@@ -16,6 +16,7 @@
 
 @synthesize arrSource = _arrSource, arrAutoComplete = _arrAutoComplete;
 @synthesize acTableView = _acTableView;
+@synthesize txtField = _txtField;
 
 - (void)viewDidLoad
 {
@@ -64,6 +65,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"selected: %@", [[_arrAutoComplete objectAtIndex:indexPath.row] description]);
+    _txtField.text = [_arrAutoComplete objectAtIndex:indexPath.row];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
